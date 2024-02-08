@@ -1,0 +1,2 @@
+Cycle,Time,Traditional Scenario,Num Autonomous Bikes,Autonomous Bikes Battery Life,AB PickUp Speed,Num Cars,Agent,Trip Served,Mode,Wait Time (min),Departure Time,Arrival Time,Duration (min),Origin [lat],Origin [lon],Destination [lat],Destination [lon],Distance (m)
+128,2022-10-01 00:21:20,true,110,50000.0,3.0555555555555554,40,package0,false,0,0.0,nil,00:21:20,21.333333333333332,-71.08688499986712,42.37212699972507,-71.12392810578444,42.38829299401005,0.0

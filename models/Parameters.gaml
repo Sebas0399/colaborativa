@@ -25,7 +25,6 @@ global {
 	bool loggingEnabled <- true parameter: "Logging" category: "Logs";
 	bool printsEnabled <- false parameter: "Printing" category: "Logs";
 	
-	bool autonomousBikeEventLog <- false parameter: "Autonomous Bike Event/Trip Log" category: "Logs";
 	bool carEventLog <- false parameter: "Car Event/Trip Log" category: "Logs";
 	
 	bool packageTripLog <- true parameter: "Package Trip Log" category: "Logs";
@@ -40,21 +39,11 @@ global {
 	bool traditionalScenario <- true parameter: "Traditional Scenario" category: "Scenarios";
 	int numCars <- 40 min:1 max:1000 parameter: "Number or Vehicles for Package Delivery in Traditional Scenario" category:"Initial";
 	int numTrucks <- 22;
-	float snowrate <- 1.097; //Cm per h
+	float rainrate <- 1.097; //Cm per h
 	//float snowrate <- 10.00; //TODO: CHANGE
-	float maxSnow <- snowrate*72; //total cm
+	float maxSnow <- rainrate*72; //total cm
 	
-	//----------------------Autonomous Scenario-------------------------
-	//-----------------Autonomous Bike Parameters-----------------------
-	int numAutonomousBikes <- 110				min: 0 max: 500 parameter: "Num Autonomous Bikes:" category: "Bike";
-	float maxBatteryLifeAutonomousBike <- 50000.0 #m	min: 10000#m max: 70000#m parameter: "Autonomous Bike Battery Capacity (m):" category: "Bike"; //battery capacity in m
-	float PickUpSpeedAutonomousBike <-  11/3.6 #m/#s min: 1/3.6 #m/#s max: 15/3.6 #m/#s parameter: "Autonomous Bike Pick-up Speed (m/s):" category:  "Bike";
-	float RidingSpeedAutonomousBike <-  PickUpSpeedAutonomousBike min: 1/3.6 #m/#s max: 15/3.6 #m/#s parameter: "Autonomous Bike Riding Speed (m/s):" category:  "Bike";
-	float minSafeBatteryAutonomousBike <- 0.25*maxBatteryLifeAutonomousBike #m; //Amount of battery at which we seek battery and that is always reserved when charging another bikez
-	
-	//------------------------------------Charging Station Parameters--------------------------------------
-	float V2IChargingRate <- maxBatteryLifeAutonomousBike/(111) #m/#s;  // 111 s battery swapping -> average of the two reported by Fei-Hui Huang 2019 Understanding user acceptancd of battery swapping service of sustainable transport
-	
+
 	//----------------------Traditional Scenario-------------------------
 	//------------------------Car Parameters------------------------------
 	// 500km for Combustion Cars from: https://www.blog.ontariocars.ca/vehicles-with-long-range-on-one-tank-on-fuel/
@@ -70,7 +59,6 @@ global {
     
     //--------------------------Package Parameters----------------------------
     float maxWaitTimePackage <- 15 #mn		min: 3#mn max: 1440#mn parameter: "Max Wait Time Package:" category: "Package";
-	float maxDistancePackage_AutonomousBike <- maxWaitTimePackage*PickUpSpeedAutonomousBike #m;
 	float maxDistancePackage_Car <- maxWaitTimePackage*RidingSpeedCar#m;
      
     //--------------------------Demand Parameters-----------------------------
@@ -79,7 +67,7 @@ global {
     
     //----------------------Map Parameters------------------------
 	//Case - Cambridge
-	string cityScopeCity <- "Cambridge";
+	string cityScopeCity <- "Centro";
 	string residence <- "R";
 	string office <- "O";
 	string park <- "P";
@@ -92,21 +80,19 @@ global {
     
 	//GIS FILES To Upload - Cambridge
 	string cityGISFolder <- "./../includes/City/"+cityScopeCity;
-	file bound_shapefile <- file(cityGISFolder + "/Bounds.shp")			parameter: "Bounds Shapefile:" category: "GIS";
-	file buildings_shapefile <- file(cityGISFolder + "/Buildings.shp")	parameter: "Building Shapefile:" category: "GIS";
+	file bound_shapefile <- file(cityGISFolder + "/bounds.shp")			parameter: "Bounds Shapefile:" category: "GIS";
+	file buildings_shapefile <- file(cityGISFolder + "/buildings.shp")	parameter: "Building Shapefile:" category: "GIS";
 	file roads_shapefile <- file(cityGISFolder + "/updatedRoads.shp")			parameter: "Road Shapefile:" category: "GIS";
 	
-	//Charging Stations - Cambridge
-	csv_file chargingStations_csv <- csv_file(cityGISFolder+ "/bluebikes_stations_cambridge.csv",true);
+
 	
 	//Restaurants - Cambridge
-	csv_file restaurants_csv <- csv_file (cityGISFolder+ "/restaurants_cambridge.csv",true);
+	//csv_file restaurants_csv <- csv_file (cityGISFolder+ "/restaurants_cambridge.csv",true);
 	
 	//Gas Stations - Cambridge
-	csv_file gasstations_csv <- csv_file (cityGISFolder+ "/gasstations.csv",true);
+	//csv_file gasstations_csv <- csv_file (cityGISFolder+ "/gasstations.csv",true);
 	 
-	//Image File
-	//file imageRaster <- file('./../images/gama_black.png');
+	
 	
 	bool show_building <- false;
 	bool show_road <- true;

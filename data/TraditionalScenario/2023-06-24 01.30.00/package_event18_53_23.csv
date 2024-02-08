@@ -1,0 +1,9 @@
+Cycle,Time,Traditional Scenario,Num Autonomous Bikes,Autonomous Bikes Battery Life,AB PickUp Speed,Num Cars,Agent,Event,Mode,Message,Start Time,End Time,Duration (min),Distance (m)
+354,2022-10-01 00:59:00,true,40,package3990,END: generated,0,nil,00:00:00,00:59:00,59.0,0.0
+354,2022-10-01 00:59:00,true,40,package7980,END: generated,0,nil,00:00:00,00:59:00,59.0,0.0
+355,2022-10-01 00:59:10,true,40,package3990,START: requestingDeliveryMode,nil
+355,2022-10-01 00:59:10,true,40,package3990,END: requestingDeliveryMode,0,nil,00:59:10,00:59:10,0.0,0.0
+355,2022-10-01 00:59:10,true,40,package7980,START: requestingDeliveryMode,nil
+355,2022-10-01 00:59:10,true,40,package7980,END: requestingDeliveryMode,0,nil,00:59:10,00:59:10,0.0,0.0
+356,2022-10-01 00:59:20,true,40,package3990,START: unserved,nil
+356,2022-10-01 00:59:20,true,40,package7980,START: unserved,nil
